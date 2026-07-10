@@ -1,51 +1,27 @@
 # Smart File Organizer
 
-Smart File Organizer is a desktop application written in Python that automatically organizes files into categorized folders based on their file extensions.
+Smart File Organizer is a desktop application written in Python that automatically organizes files into categorized folders based on their file type.
 
-The application provides an intuitive graphical user interface, automatic folder creation, duplicate file protection, progress tracking and detailed statistics after every run.
-
----
-
-## Features
-
-- Automatically organizes files into folders
-- Supports over 70 different file extensions
-- Graphical user interface built with Tkinter
-- Automatic folder creation
-- Duplicate file protection
-- Progress bar during processing
-- Summary statistics after every run
-- Automatic categorization of:
-  - Images
-  - Documents
-  - Videos
-  - Music
-  - Archives
-  - Programs
-  - Source Code
-  - Configuration Files
-  - Java Packages
-  - Disk Images
-  - Other Files
-- Ignores temporary Office and Windows system files
-- Clean and modular project structure
+The application provides a clean graphical user interface, detailed progress information, automatic log generation, duplicate file protection, and persistent user settings.
 
 ---
 
-## Supported File Categories
+## Overview
 
-| Category | Examples |
-|----------|----------|
-| Images | JPG, PNG, JPEG, GIF, WEBP, BMP, HEIC |
-| Documents | PDF, DOCX, XLSX, PPTX, TXT, CSV |
-| Videos | MP4, AVI, MKV, MOV |
-| Music | MP3, WAV, FLAC, OGG |
-| Archives | ZIP, RAR, 7Z |
-| Programs | EXE, MSI, BAT |
-| Source Code | PY, JAVA, CPP, C, JS, HTML, CSS, SQL |
-| Configuration | JSON, XML, YAML, CFG |
-| Java Packages | JAR, WAR |
-| Disk Images | ISO, IMG, VHD |
+The application scans a selected folder and sorts files into dedicated directories such as:
+
+- Documents
+- Images
+- Videos
+- Music
+- Archives
+- Source Code
+- Programs
+- Data & Configuration
+- Disk Images
+- Other
+
+Existing files are never overwritten. If a file with the same name already exists, a new filename is generated automatically.
 
 ---
 
@@ -53,98 +29,162 @@ The application provides an intuitive graphical user interface, automatic folder
 
 ### Main Window
 
-> Screenshot will be added soon.
+![Main Window](screenshots/main-window.png)
 
-### Result Window
+### Organizing Files
 
-> Screenshot will be added soon.
+![Progress](screenshots/progress.png)
+
+### Result
+
+![Result](screenshots/result.png)
+
+---
+
+## Features
+
+- Automatic file organization
+- Support for more than 70 file extensions
+- Graphical user interface built with Tkinter
+- Automatic category creation
+- Duplicate filename protection
+- Detailed progress indicator
+- Processing statistics
+- Log file generation
+- Optional recursive folder scan
+- Automatic saving of user settings
+- Error handling and validation
+- Fast processing using the Python standard library
 
 ---
 
 ## Installation
 
-Clone the repository
+Clone the repository.
 
 ```bash
 git clone https://github.com/onurguendogdu/smart-file-organizer.git
 ```
 
-Navigate into the project
+Open the project.
 
 ```bash
 cd smart-file-organizer
 ```
 
-Run the application
+Run the application.
 
 ```bash
 python src/main.py
+```
+
+No third-party dependencies are required.
+
+---
+
+## Usage
+
+1. Launch the application.
+2. Select a folder.
+3. Enable recursive scanning if required.
+4. Click **"Dateien organisieren"**.
+5. The application creates category folders automatically.
+6. Files are moved into the correct destination folders.
+7. A detailed log file is generated.
+
+---
+
+## Example
+
+### Before
+
+```
+Downloads
+│
+├── photo.jpg
+├── report.pdf
+├── movie.mp4
+├── archive.zip
+├── music.mp3
+```
+
+### After
+
+```
+Downloads
+│
+├── Images
+│   └── photo.jpg
+│
+├── Documents
+│   └── report.pdf
+│
+├── Videos
+│   └── movie.mp4
+│
+├── Music
+│   └── music.mp3
+│
+└── Archives
+    └── archive.zip
 ```
 
 ---
 
 ## Project Structure
 
-```text
-smart-file-organizer/
+```
+smart-file-organizer
 │
-├── docs/
-├── screenshots/
-├── src/
-│   ├── config.py
-│   ├── file_utils.py
+├── screenshots
+│   ├── main-window.png
+│   ├── progress.png
+│   └── result.png
+│
+├── src
+│   ├── main.py
 │   ├── organizer.py
-│   └── main.py
+│   ├── file_utils.py
+│   ├── config.py
+│   └── settings.py
 │
-├── tests/
-│
-├── .gitignore
 ├── README.md
-└── requirements.txt
+├── CHANGELOG.md
+├── LICENSE
+├── requirements.txt
+└── .gitignore
 ```
 
 ---
 
-## Example
+## Logging
 
-Before
+Each execution creates a detailed log file containing:
 
-```text
-Downloads/
+- Processing time
+- Moved files
+- Statistics
+- Error messages
+- Processing duration
 
-image.png
-holiday.jpg
-music.mp3
-movie.mp4
-document.pdf
-program.exe
-archive.zip
-```
+The log file is stored automatically inside the processed directory.
 
-After
+---
 
-```text
-Downloads/
+## Error Handling
 
-Images/
-    image.png
-    holiday.jpg
+The application validates user input before processing.
 
-Music/
-    music.mp3
+Implemented checks include:
 
-Videos/
-    movie.mp4
+- Invalid folder selection
+- Missing folders
+- Permission errors
+- Duplicate filenames
+- Invalid files
+- Unexpected runtime errors
 
-Documents/
-    document.pdf
-
-Programs/
-    program.exe
-
-Archives/
-    archive.zip
-```
+Whenever possible, the application continues processing remaining files instead of terminating.
 
 ---
 
@@ -154,47 +194,40 @@ Archives/
 - Tkinter
 - pathlib
 - shutil
-- Git
-- GitHub
+- json
+- datetime
+
+Only modules from the Python Standard Library are used.
 
 ---
 
-## Roadmap
+## Version
 
-### Version 1.1
+Current release:
 
-- Dark Mode
-- Better statistics
-- Improved user interface
-- Faster processing
-- Better error handling
+**Version 1.2.0**
 
-### Version 1.2
+Major improvements include:
 
-- Drag & Drop support
-- Configuration file
-- Logging
-- Recursive folder organization
-
-### Version 2.0
-
-- Modern custom interface
-- Multi-language support
-- Automatic monitoring of folders
-- Settings window
-- Advanced filtering
+- Improved graphical user interface
+- Persistent application settings
+- Recursive folder scanning
+- Detailed logging
+- Improved statistics
+- Better validation
+- Cleaner project structure
 
 ---
 
 ## Future Improvements
 
-- Custom categories
-- File preview
-- Undo operation
-- Duplicate file detection
-- Automatic scheduled organization
-- Export statistics
+Planned improvements include:
+
+- Drag and drop support
 - Search functionality
+- Additional file categories
+- Dark mode
+- Configuration editor
 
 ---
 
@@ -202,12 +235,14 @@ Archives/
 
 This project is released under the MIT License.
 
+See the `LICENSE` file for additional information.
+
 ---
 
 ## Author
 
-Onur Gündogdu
+**Onur Gündogdu**
 
-Computer Science Student
+GitHub:
 
-Specialization: Artificial Intelligence
+https://github.com/onurguendogdu

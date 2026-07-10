@@ -2,16 +2,32 @@
 __pycache__/
 **/__pycache__/
 *.py[cod]
+*$py.class
 
-# VS Code
-.vscode/
-
-# Virtual Environment
+# Virtual environments
 venv/
 .venv/
+env/
 
-# macOS
+# Editors
+.vscode/
+.idea/
+
+# Operating systems
 .DS_Store
+Thumbs.db
+desktop.ini
 
-# Logs
+# Logs and temporary files
 *.log
+*.tmp
+
+# Test and coverage files
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build files
+build/
+dist/
+*.egg-info/
